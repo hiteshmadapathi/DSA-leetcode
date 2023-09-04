@@ -1,5 +1,4 @@
-# Solution:
-
+# Solution 1:
 from collections import deque
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
@@ -16,4 +15,17 @@ class Solution:
                 break
         
         return len(students)
-                
+
+# Solution 2:
+from collections import deque
+class Solution:
+    def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
+        students = deque(students)
+        for sandwich in sandwiches:
+            if sandwich in students:
+                while students[0]!=sandwich:
+                    students.append(students.popleft())
+                students.popleft()
+            else:
+                break
+        return len(students)
