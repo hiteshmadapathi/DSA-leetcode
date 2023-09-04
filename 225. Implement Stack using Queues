@@ -15,6 +15,15 @@ class MyStack:
     def top(self) -> int:
         return self.q1[-1]
 
+    """
+    def top(self) -> int:
+        for i in range(len(self.q1)-1):
+            self.push(self.q1.popleft())
+        top = self.q1.popleft()
+        self.push(top)
+        return top
+    """
+
     def empty(self) -> bool:
         return len(self.q1)==0
         
