@@ -10,13 +10,27 @@ class Solution:
                 sandwiches.popleft()
             else:
                 students.append(students.popleft())
-            
             if len(set(students))==1 and students[0]!=sandwiches[0]:
                 break
-        
         return len(students)
 
 # Solution 2:
+from collections import deque
+class Solution:
+    def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
+        students = deque(students)
+        sandwiches = deque(sandwiches)
+        while len(students)!=0:
+            if sandwiches[0] not in students:
+                break 
+            if students[0]==sandwiches[0]:
+                students.popleft()
+                sandwiches.popleft()
+            else:
+                students.append(students.popleft())
+        return len(students)
+
+# Solution 3:
 from collections import deque
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
