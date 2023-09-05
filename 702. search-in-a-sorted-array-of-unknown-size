@@ -1,0 +1,15 @@
+def search(arrReader, target):
+    l, h = 0, 1
+    while arrReader.get(h)<target:
+            l = h
+            h = 2*h
+
+    while l<=h:
+        mid = l+(h-l)//2
+        if arrReader.get(mid)==target:
+            return mid
+        elif arrReader.get(mid)<target:
+            h = mid-1
+        else:
+            l = mid+1
+    return -1
