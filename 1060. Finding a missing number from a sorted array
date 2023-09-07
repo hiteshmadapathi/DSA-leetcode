@@ -1,0 +1,16 @@
+arr = [1,2,3,4,5,6,7,9]
+
+def func(arr):
+    l, h = 0, len(arr)-1
+    while (h-l)>1:
+        mid = l+(h-l)//2
+        lowinddiff = arr[l]-l
+        highinddiff = arr[h]-h
+        midinddiff = arr[mid]-mid
+        if midinddiff!=lowinddiff:
+            h = mid
+        elif midinddiff!=highinddiff:
+            l = mid
+    return (arr[h]+arr[l])//2
+        
+print(func(arr))
