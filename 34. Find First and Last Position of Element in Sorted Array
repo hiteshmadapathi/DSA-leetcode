@@ -1,0 +1,39 @@
+class Solution:
+    # Time Complexity = O(logn)
+    # Space Complexity = O(1)
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if len(nums)==0:
+            return [-1,-1]
+        start = self.startindex(nums, target)
+        end = self.endindex(nums, target, start)
+        return [start, end]
+    
+    def startindex(self, nums, target):
+        l = 0
+        h = len(nums)-1
+        start = -1
+        while l<=h:
+            mid = l+ (h-l)//2
+            if nums[mid]==target:
+                start = mid
+                h = mid-1
+            elif nums[mid]>target:
+                h = h-1
+            else:
+                l = l+1
+        return start
+    
+    def endindex(self, nums, target, start):
+        l = 0
+        h = len(nums)-1
+        end = -1
+        while l<=h:
+            mid = l+(h-l)//2
+            if nums[mid]==target:
+                end = mid
+                l = mid+1
+            elif nums[mid]<target:
+                l = l+1
+            else:
+                h = h-1
+        return end
