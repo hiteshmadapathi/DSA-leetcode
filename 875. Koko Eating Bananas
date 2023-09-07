@@ -1,0 +1,41 @@
+class Solution:
+
+    # Time Complexity - O(log(max(piles))*len(piles))
+    # Space Complexity - O(1)
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        l, r = 1, max(piles)
+        output = r
+        while l<=r:
+            k = l + (r-l)//2
+            hrs = 0
+            for pile in piles:
+                hrs += math.ceil(pile/k)
+            if hrs<=h:
+                output = min(output, k)
+                r = k-1
+            else:
+                l = k+1
+                
+            print(k, output)
+        return output
+
+
+
+
+    """
+    # Time Complexity - O(max(piles)*len(piles))
+    # Space Complexity - O(1)
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        if len(piles)==h:
+            return max(piles)
+        for k in range(1, max(piles)+1, 1):
+            count = 0
+            for pile in piles:
+                if k>=pile:
+                    count = count+1
+                else:
+                    count = count+(pile//k)+1
+                if count>h:
+                    break
+            if count<=h:
+                return k"""
