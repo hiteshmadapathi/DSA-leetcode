@@ -1,0 +1,52 @@
+class Solution:
+    # Time Complexity - O(logn)
+    # Space Complexity - O(1)
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+        
+        if val>root.val:
+            return self.searchBST(root.right, val)
+        elif val<root.val:
+            return self.searchBST(root.left, val)
+        else:
+            return root
+
+    # Time Complexity - O(logn)
+    # Space Complexity - O(1)
+    def insertBST(self, root, val):
+        if not root:
+            return TreeNode(val)
+        
+        if val>root.val:
+            root.right = self.insertBST(root.right, val)
+        elif val<root.val:
+            root.left = self.insertBST(root.left, val)
+        return root
+
+    # Time Complexity - O(logn)
+    # Space Complexity - O(1)
+    def removeBST(self, root, val):
+        if not root:
+            return None
+        
+        if val>root.val:
+            root.right = self.searchBST(root.right, val)
+        elif val<root.val:
+            root.left = self.searchBST(root.left, val)
+        else:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+            else:
+                minNode = self.minNode(root.right)
+                root.val = minNode.val
+                root.right = self.searchBST(root.right, minNode.val)
+        return root
+    
+    def minNode(self, root):
+        curr = root
+        while curr and curr.left:
+            curr= curr.left
+        return curr
