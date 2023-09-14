@@ -1,0 +1,34 @@
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+from collections import defaultdict
+class Solution:
+    
+    def longestPalindrome(self, s: str) -> int:
+        hset = set()
+        count = 0
+        for i in range(len(s)):
+            if s[i] in hset:
+                count = count+2
+                hset.remove(s[i])
+            else:
+                hset.add(s[i])
+        if hset:
+            return count+1
+        return count
+
+        """
+        hmap = defaultdict(int)
+        for i in s:
+            hmap[i] = hmap[i]+1
+        
+        count = 0
+        extra = 0
+        for key, value in hmap.items():
+            if value%2==0:
+                count +=value
+            else:
+                count +=value-1
+                hmap[key] = 1
+                extra = 1
+        return count+extra
+        """
