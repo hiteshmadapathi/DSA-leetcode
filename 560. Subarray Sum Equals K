@@ -1,0 +1,16 @@
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+from collections import defaultdict
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        hmap = defaultdict(int)
+        hmap[0] = 1
+        rsum = 0
+        count = 0
+        for i in range(len(nums)):
+            rsum += nums[i]
+            if (rsum-k) in hmap:
+                count += hmap[rsum-k]
+            hmap[rsum] = hmap[rsum]+1
+        print(hmap)
+        return count
