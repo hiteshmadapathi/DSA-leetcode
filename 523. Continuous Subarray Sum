@@ -1,0 +1,15 @@
+# Time Complexity - O(n)
+# Space Complexity - O(n)
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        hmap = {}
+        hmap[0] = -1
+        rsum = 0
+        for i in range(len(nums)):
+            rsum += nums[i]
+            if (rsum%k) in hmap and (i-hmap[rsum%k]>=2):
+                return True
+            elif (rsum%k) not in hmap:
+                hmap[rsum%k] = i
+        return False
+            
