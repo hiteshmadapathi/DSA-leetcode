@@ -14,3 +14,17 @@ class Solution:
             hmap[rsum] = hmap[rsum]+1
         print(hmap)
         return count
+    '''
+    # Brute Force
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        list1 = []
+        for i in range(len(nums)):
+            temp = []
+            for j in range(i,len(nums)):
+                temp.append(nums[j])
+                list1.append(temp.copy())
+        count=0
+        for i in list1:
+            if sum(i)==k:
+                count=count+1
+        return count'''
