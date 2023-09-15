@@ -1,0 +1,39 @@
+    '''
+    # Time Complexity: O(n)
+    # Space Complexity: O(n)
+
+    class Solution:
+        def findMaxLength(self, nums: List[int]) -> int:
+            hmap = {}
+            rsum = 0
+            hmap[0] = -1
+            maxi = 0
+            for i in range(len(nums)):
+                if nums[i]==0:
+                    rsum=rsum-1
+                else:
+                    rsum=rsum+1
+                if rsum not in hmap:
+                    hmap[rsum] = i
+                else:
+                    maxi = max(maxi,i-hmap[rsum])
+            return maxi'''
+        
+    '''
+    # Time Complexity - O(n^2)
+    # Space Complexity - O(n^2)
+    def findMaxLength(self, nums: List[int]) -> int:
+        result = []
+        for i in range(len(nums)):
+            temp = []
+            for j in range(i,len(nums)):
+                if nums[j]==0:
+                    temp.append(-1)
+                else:
+                    temp.append(1)
+                result.append(temp.copy())
+        maxi = 0
+        for i in result:
+            if sum(i)==0:
+                maxi = max(maxi,len(i))
+        return maxi'''
