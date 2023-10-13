@@ -1,0 +1,17 @@
+# Time Complexity - O(n)
+# Space Complexity - O(1)
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        lprod = 1
+        result = [None]*len(nums)
+        result[0] = 1
+        for i in range(1, len(nums)):
+            lprod = lprod*nums[i-1]
+            result[i] = lprod
+        
+        rprod = 1
+        for i in range(len(nums)-2,-1,-1):
+            rprod = rprod*nums[i+1]
+            result[i] = result[i]*rprod
+        return result
