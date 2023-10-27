@@ -1,0 +1,43 @@
+# Time Complexity - O(n^2)
+# Space Complexity - O(1)
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        nums = sorted(nums)
+        for i in range(len(nums)):
+            l = i+1
+            h = len(nums)-1
+            if i>0 and nums[i]==nums[i-1]:
+                continue
+            while l<h:
+                threesum = nums[i]+nums[l]+nums[h]
+                if threesum==0:
+                    result.append([nums[i],nums[l],nums[h]])
+                    l = l+1
+                    h = h-1
+                    while l<h and nums[l]==nums[l-1]:
+                        l = l+1
+                elif threesum<0:
+                    l = l+1
+                else:
+                    h = h-1
+        return result
+
+
+    """
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        hset = set()
+        result = []
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                for k in range(j+1, len(nums)):
+                    if nums[i]+nums[j]+nums[k]==0:
+                        li = []
+                        li.extend((nums[i], nums[j], nums[k]))
+                        li = sorted(li)
+                        if tuple(li) not in hset:
+                            result.append(li)
+                            hset.add(tuple(li))
+        return result
+    """
