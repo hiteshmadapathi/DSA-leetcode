@@ -27,6 +27,31 @@ class Solution:
 
     """
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        for i in range(len(nums)):
+            hset = set()
+            target = -1*nums[i]
+            for j in range(i+1, len(nums)):
+                if target-nums[j] in hset:
+                    result.append([nums[i], nums[j], target-nums[j]])
+                else:
+                    hset.add(nums[j])
+        
+        for i in range(len(result)):
+            result[i] = sorted(result[i])
+        tuple_list = [tuple(inner) for inner in result]
+
+        # Remove duplicates by converting to set and back to a list of tuples
+        unique_tuples = list(set(tuple_list))
+
+        # Convert the unique tuples back to lists
+        result = [list(inner) for inner in unique_tuples]
+
+        return result
+    """
+
+    """
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
         hset = set()
         result = []
         for i in range(len(nums)):
