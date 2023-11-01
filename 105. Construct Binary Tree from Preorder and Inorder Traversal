@@ -1,0 +1,17 @@
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if preorder==None or len(preorder)==0:
+            return None
+        root = TreeNode(preorder[0])
+        idx = -1
+        for i in range(len(inorder)):
+            if inorder[i]==root.val:
+                idx = i
+                break
+        inleft = inorder[:i+1]
+        inright = inorder[i+1:]
+        preleft = preorder[1:i+1]
+        preright = preorder[i+1:]
+        root.left = self.buildTree(preleft, inleft)
+        root.right = self.buildTree(preright, inright)
+        return root
