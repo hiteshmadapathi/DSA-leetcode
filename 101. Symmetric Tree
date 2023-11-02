@@ -1,6 +1,6 @@
 class Solution:
     # Time Complexity - O(n)
-    # Space Complexity - O(n)
+    # Space Complexity - O(height)
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         return self.helper(root.left, root.right)
 
