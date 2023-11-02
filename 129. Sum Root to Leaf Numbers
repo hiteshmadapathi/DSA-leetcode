@@ -24,15 +24,11 @@ class Solution:
     def helper(self, root, s):
         # base
         if root==None:
-            self.result.append(int(s))
             return
         # logic
         s = s+str(root.val)
-        if root.left==None:
-            self.helper(root.right, s)
-        elif root.right==None:
-            self.helper(root.left, s)
-        else:
-            self.helper(root.left, s)
-            self.helper(root.right, s)
+        if root.left==None and root.right==None:
+            self.result.append(int(s))
+        self.helper(root.left, s)
+        self.helper(root.right, s)
     """
