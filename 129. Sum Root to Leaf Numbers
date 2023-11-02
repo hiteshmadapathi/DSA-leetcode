@@ -1,0 +1,38 @@
+class Solution:
+    # Time Complexity - O(n)
+    # Space Complexity - O(height)
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        self.sum = 0
+        self.helper(root, 0)
+        return self.sum
+    
+    def helper(self, root, num):
+        # base 
+        if root==None:
+            return
+        # logic
+        if root.left==None and root.right==None:
+            self.sum = self.sum + (num*10+root.val)
+        self.helper(root.left, num*10+root.val)
+        self.helper(root.right, num*10+root.val)
+  """
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        self.result = []
+        self.helper(root, '')
+        return sum(self.result)
+    
+    def helper(self, root, s):
+        # base
+        if root==None:
+            self.result.append(int(s))
+            return
+        # logic
+        s = s+str(root.val)
+        if root.left==None:
+            self.helper(root.right, s)
+        elif root.right==None:
+            self.helper(root.left, s)
+        else:
+            self.helper(root.left, s)
+            self.helper(root.right, s)
+    """
