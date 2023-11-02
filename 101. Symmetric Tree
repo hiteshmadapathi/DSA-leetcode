@@ -2,6 +2,26 @@ class Solution:
     # Time Complexity - O(n)
     # Space Complexity - O(height)
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        stack = []
+        stack.append(root.left)
+        stack.append(root.right)
+        while len(stack)>0:
+            left = stack.pop()
+            right = stack.pop()
+            if left==None and right==None:
+                continue
+            if (left!=None and right==None) or (left==None and right!=None) or (left.val!=right.val):
+                return False
+            stack.append(left.left)
+            stack.append(right.right)
+            stack.append(left.right)
+            stack.append(right.left)
+        return True
+
+    """
+    # Time Complexity - O(n)
+    # Space Complexity - O(height)
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         return self.helper(root.left, root.right)
 
     def helper(self, left, right):
@@ -13,3 +33,4 @@ class Solution:
         
         # logic
         return self.helper(left.left, right.right) and self.helper(left.right, right.left)
+    """
